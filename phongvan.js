@@ -37,7 +37,7 @@ async function makeImage({ one, two }) {
     
     let circleOne = await jimp.read(await circle(avatarOne));
     let circleTwo = await jimp.read(await circle(avatarTwo));
-   phongvan_img.resize(500, 500).composite(circleOne.resize(95, 95), 385, 90).composite(circleTwo.resize(95, 95), 230, 300);
+   phongvan_img.resize(500, 500).composite(circleOne.resize(110, 110), 385, 50).composite(circleTwo.resize(95, 95), 230, 300);
     
     let raw = await phongvan_img.getBufferAsync("image/png");
     
