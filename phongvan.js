@@ -1,3 +1,4 @@
+//Học ăn học nói đừng học đâu cái thói thay cre
 module.exports.config = {
     name: "phongvan",
     version: "1.0.0",
