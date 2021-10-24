@@ -1,5 +1,4 @@
 //Học ăn học nói đừng học đâu cái thói thay cre
-//không encode đấy,thay cc
 module.exports.config = {
     name: "bolac",
     version: "1.0.0",
