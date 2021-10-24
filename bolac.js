@@ -32,7 +32,7 @@ async function makeImage({ one, two }) {
     fs.writeFileSync(avatarOne, Buffer.from(getAvatarOne, 'utf-8'));
     
     let circleOne = await jimp.read(await circle(avatarOne));
-    point_image.composite(circleOne.resize(95, 95), 455, 200)
+    point_image.composite(circleOne.resize(70, 70), 465, 200)
     
     let raw = await point_image.getBufferAsync("image/png");
     
@@ -48,19 +48,14 @@ async function circle(image) {
     return await image.getBufferAsync("image/png");
 }
 
+
 module.exports.run = async function ({ event, api, args, client }) {
     const fs = require("fs-extra");
     let { threadID, messageID, senderID } = event;
-    var mention = Object.keys(event.mentions)[0]
-    let tag = event.mentions[mention].replace("@", "");
+    var mention = Object.keys(event.mentions)[0];
     if (!mention) return api.sendMessage("Vui lòng tag 1 người", threadID, messageID);
     else {
-        var one = senderID, two = mention;
-        return makeImage({ one, two }).then(path => api.sendMessage({ body: "Uả " + tag + '\nđi đâu vậy em',
-            mentions: [{
-          tag: tag,
-          id: mention
-        }],
-     attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+        var one  = mention;
+        return makeImage({ one }).then(path => api.sendMessage({ body: event.mentions[mention].replace("@", "") + " đi đâu vậy em", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
     }
 }
